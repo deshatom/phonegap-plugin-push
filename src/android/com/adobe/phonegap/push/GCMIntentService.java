@@ -163,7 +163,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
                     try {
                         // If object contains message keys promote each value to the root of the bundle
                         JSONObject data = new JSONObject((String) json);
-                        if ( data.has(ALERT) || data.has(MESSAGE) || data.has(BODY) || data.has(TITLE) ) {
+                        if ( data.has(ALERT) || data.has(MESSAGE) || data.has(BODY) || data.has(TITLE) || data.has(ADDITIONAL_DATA) ) {
                             Iterator<String> jsonIter = data.keys();
                             while (jsonIter.hasNext()) {
                                 String jsonKey = jsonIter.next();
@@ -221,8 +221,8 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
     private void showNotificationIfPossible (Context context, Bundle extras) {
 
         // Send a notification if there is a message or title, otherwise just send data
-        String message = extras.getString(MESSAGE);
-        String title = extras.getString(TITLE);
+        String message = extras.getString(MP_MESSAGE);
+        String title = MP_TITLE;
         String contentAvailable = extras.getString(CONTENT_AVAILABLE);
         int badgeCount = extractBadgeCount(extras);
         if (badgeCount >= 0) {
@@ -494,7 +494,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
     }
 
     private void setNotificationMessage(int notId, Bundle extras, NotificationCompat.Builder mBuilder) {
-        String message = extras.getString(MESSAGE);
+        String message = extras.getString(MP_MESSAGE);
 
         String style = extras.getString(STYLE, STYLE_TEXT);
         if(STYLE_INBOX.equals(style)) {

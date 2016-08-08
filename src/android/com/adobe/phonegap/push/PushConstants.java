@@ -60,4 +60,6 @@ public interface PushConstants {
     public static final String CLEAR_ALL_NOTIFICATIONS = "clearAllNotifications";
     public static final String VISIBILITY = "visibility";
     public static final String INLINE_REPLY = "inlineReply";
+    public static final String MP_MESSAGE = "mp_message";
+    public static final String MP_TITLE = "A2K Technologies";
 }
