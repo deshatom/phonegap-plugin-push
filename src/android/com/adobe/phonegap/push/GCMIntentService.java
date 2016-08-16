@@ -496,6 +496,7 @@ public class GCMIntentService extends GcmListenerService implements PushConstant
 
     private void setNotificationMessage(int notId, Bundle extras, NotificationCompat.Builder mBuilder) {
         String message = extras.getString(MP_MESSAGE);
+        extras.putString(TITLE,MP_TITLE);
 
         String style = extras.getString(STYLE, STYLE_TEXT);
         if(STYLE_INBOX.equals(style)) {
